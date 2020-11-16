@@ -23,22 +23,36 @@ const questions = [
     {
         type: 'input',
         message: "How do you install it?",
-        name: 'Install',
+        name: 'install',
     },
     {
-        type
-    }
-
+        type: 'input',
+        message: "Contribution Instructions",
+        name: 'contribute',
+    },
+    {
+        type: 'input',
+        message: "Testing Instructions",
+        name: 'testing',
+    },
 ];
 
-// function to write README file
+//README file writing function
 function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("Your file was successfully generated!");
+    });
 }
 
-// function to initialize program
+//Initialize program
 function init() {
-
+    inquirer.prompt(questions).then(function(response) {
+        formatREADME(response);
+    });
 }
 
-// function call to initialize program
+//Call to initialize program
 init();
