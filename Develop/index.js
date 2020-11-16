@@ -7,6 +7,39 @@ const util = require("util");
 const questions = [
   {
     type: "input",
+    message: "GitHub username?",
+    name: "username",
+    validate: function (answer) {
+      if (answer.length < 1) {
+        return console.log("Cannot be left blank!");
+      }
+      return true;
+    },
+  },
+  {
+    type: "input",
+    message: "GitHub repo name?",
+    name: "repo",
+    validate: function (answer) {
+      if (answer.length < 1) {
+        return console.log("Cannot be left blank!");
+      }
+      return true;
+    },
+  },
+  {
+    type: "input",
+    message: "Email address?",
+    name: "email",
+    validate: function (answer) {
+      if (answer.length < 1) {
+        return console.log("Cannot be left blank!");
+      }
+      return true;
+    },
+  },
+  {
+    type: "input",
     message: "What would you like to name this project?",
     name: "name",
   },
@@ -50,6 +83,12 @@ function writeToFile(fileName, data) {
 function formatREADME(info) {
   const format = `
     # ${info.name} 
+    ##Your GitHub username:
+    ${info.username}
+    ##Your repository name:
+    ${info.repo}
+    ##Your email adress:
+    ${info.email}
     ## What this app is: 
     ${info.description}
     ## What it is used for:
